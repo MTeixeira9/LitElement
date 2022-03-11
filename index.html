@@ -6,6 +6,8 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Document</title>
         <script type="module" src="./component.js"></script>
+        <script type="module" src="./home-view.js"></script>
+        <script type="module" src="./about-view.js"></script>
         <style>
             h1 {
                 font-size: 4rem;
@@ -14,17 +16,20 @@
         </style>
     </head>
     <body>
-        <h1>Hello</h1>
-        <input type="number"><span>Enter in a heat level</span>
-        <my-component heat="5"></my-component>
+        <h1><a href="/">Home</a></h1>
+        <h1><a href="/about">About</a></h1>
+        <div id="outlet"></div>
 
-        <script>
-            const input = document.querySelector("input");
-            const myComponent = document.querySelector("my-component");
+        <script type="module">
+            import {Router} from '@vaadin/router';
 
-            input.addEventListener('change', e => {
-                myComponent.heat = input.value;
-            });
+            const outlet = document.querySelector("#outlet");
+            const router = new Router(outlet);
+
+            router.setRoutes([
+                { path: '/', component: 'home-view' },
+                { path: '/about', component: 'about-view' }
+            ])
         </script>
     </body>
 </html>
